@@ -11,32 +11,27 @@ data Category =
     | Webcomic
     | Comic
 
+newtype Letter = Letter Char
+
+letter :: Char -> Maybe Letter
+letter c = if isAlpha c
+    then Just $ Letter c
+    else Nothing
+
+letterString :: String -> [Letter]
+letterString = mapMaybe letter
+
 newtype Name = Name [Letter]
+
+newtype FullName = FullName Name
 
 newtype Title = Title String
 
 newtype Language = Language [Letter]
-
-newtype FullName = FullName [Letter]
-
--- data Author = 
---     FullName
---     | Alias
---     | Anonymous
 
 newtype NoPages = NoPages Natural
 
 newtype NoWords = NoWords Natural
 
 newtype Editorial = Editorial String
-
-newtype Letter = Letter Char
-
-letter :: Char -> Maybe Letter
-letter x = if isAlpha x
-    then Just $ Letter x
-    else Nothing
-
-letterString :: String -> [Letter]
-letterString = mapMaybe letter
 
